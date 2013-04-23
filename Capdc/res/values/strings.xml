@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">Capdc</string>
+    <string name="hello_world">Hello world!</string>
+    <string name="menu_settings">Settings</string>
+    <string name="envoyer">Envoyer les données au Serveur</string>
+    <string name="enregistrer">Enregistrer des Parcelles</string>
+    <string name="numero">Numéro d Exploitation</string>
+    <string name="title_activity_saisir_exploitation">Saisir_exploitation</string>
+    <string name="espece">Nom de l\'espèce</string>
+    <string name="surface">Surface de la parcelle</string>
+    <string name="rendement_prevu">Rendements prévus</string>
+    <string name="rendement_realise">Rendements réalisés</string>
+    
+    
+    <string name="sauv">sauvegarder</string>
+    
+    
+    <string name="suivant">suivant</string>
+
+</resources>

@@ -1,0 +1,56 @@
+package com.example.capdc;
+
+public class parcelle {
+
+	private int id;
+	private int idexploitation;
+	private int idespece;
+	private String rendementprevu;
+	private String rendementrealise;
+	private String surface;
+
+	public parcelle() {
+	}
+	public parcelle(int idexploitation, int idespece, String rendementprevu, String rendementrealise) {
+		this.idexploitation = idexploitation;
+		this.idespece = idespece;
+		this.rendementprevu = rendementprevu;
+		this.rendementrealise = rendementrealise;
+	}
+	public int getId() {
+		return id;
+	}
+	public void setId(int id) {
+		this.id = id;
+	}
+	public int getIdexploitation() {
+		return idexploitation;
+	}
+	public void setIdexploitation(int idexploitation) {
+		this.idexploitation = idexploitation;
+	}
+	public int getIdespece() {
+		return idespece;
+	}
+	public void setIdespece(int idespece) {
+		this.idespece = idespece;
+	}
+	public String getRendementprevu() {
+		return rendementprevu;
+	}
+	public void setRendementprevu(String rendementprevu) {
+		this.rendementprevu = rendementprevu;
+	}
+	public String getRendementrealise() {
+		return rendementrealise;
+	}
+	public void setRendementrealise(String rendementrealise) {
+		this.rendementrealise = rendementrealise;
+	}
+	public String getSurface() {
+		return surface;
+	}
+	public void setSurface(String surface) {
+		this.surface = surface;
+	}
+}

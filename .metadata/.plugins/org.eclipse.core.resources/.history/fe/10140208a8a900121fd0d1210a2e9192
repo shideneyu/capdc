@@ -1,0 +1,68 @@
+package com.example.capdc;
+
+import android.content.ContentValues;
+import android.content.Context;
+import android.database.Cursor;
+import android.database.sqlite.SQLiteDatabase;
+import android.util.Log;
+
+
+
+public class especesbdd {
+
+	private static final int VERSION_BDD = 9;
+	private static final String NOM_BDD = "mabdd.db";
+
+	private static final String TABLE_ESPECES = "table_especes";
+	private static final String COL_ID = "id";
+	private static final int NUM_COL_ID = 0;
+	private static final String COL_LIBELLE = "libelle";
+	private static final int NUM_COL_LIBELLE = 1;
+
+	private SQLiteDatabase bdd;
+
+	private mabasesqlite mabasesqlite;
+
+	public especesbdd(Context context){
+		mabasesqlite = new mabasesqlite(context, NOM_BDD, null, VERSION_BDD);
+
+	}
+
+	public static void open(){
+
+		bdd = mabasesqlite.getWritableDatabase();
+
+	}
+
+	public void close(){
+		bdd.close();
+	}
+
+	public SQLiteDatabase getBDD(){
+		return bdd;
+	}
+
+	public long insertEspece(espece espece){
+		ContentValues values = new ContentValues();
+		values.put(COL_LIBELLE, espece.getLibelle());
+		return bdd.insert(TABLE_ESPECES, null, values);
+	}
+	
+	public espece getespeceswithid(int id){
+		Cursor c = bdd.query(TABLE_ESPECES, new String[] {COL_ID, COL_LIBELLE}, COL_ID + " = \"" + id +"\"", null, null, null, null);
+		return cursorToEspece(c);
+	}
+
+	private espece cursorToEspece(Cursor c){
+		if (c.getCount() == 0)
+			return null;
+
+		c.moveToFirst();
+		espece espece = new espece();
+		espece.setId(c.getInt(NUM_COL_ID));
+		espece.setLibelle(c.getString(NUM_COL_LIBELLE));
+		c.close();
+
+		return espece;
+	}
+}

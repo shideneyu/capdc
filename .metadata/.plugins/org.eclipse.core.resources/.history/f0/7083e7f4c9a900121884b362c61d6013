@@ -1,0 +1,126 @@
+package com.example.capdc;
+import android.widget.AdapterView.OnItemSelectedListener;
+import android.os.Bundle;
+import android.app.Activity;
+import android.content.Intent;
+import android.view.Menu;
+import android.view.View;
+import android.view.View.OnClickListener;
+import android.widget.ArrayAdapter;
+import android.widget.Button;
+import android.widget.EditText;
+import android.widget.Spinner;
+import android.widget.TextView;
+import android.widget.Toast;
+import android.widget.AdapterView;
+import android.widget.AdapterView.OnItemSelectedListener;
+
+public class Saisir_exploitation extends Activity {
+
+    TextView espece;
+    Spinner choix;
+
+	
+	@Override
+	protected void onCreate(Bundle savedInstanceState) {
+		super.onCreate(savedInstanceState);
+		setContentView(R.layout.activity_saisir_exploitation);
+
+		// Spinner
+	    final Spinner choix = (Spinner) findViewById(R.id.choix);
+	    int i = 0;
+	    especesbdd.open();
+        espece especesdelabdd = especesbdd.getespeceswithid(1);
+	    while(especesdelabdd != null) {
+	    	i++;
+	    	especesdelabdd = especesbdd.getespeceswithid(i);
+	    }
+    	// nomsEspeces[j] = especesbdd.getespeceswithid(j).getLibelle();
+
+	    // i - 1 car il y a une itération en trop précédemment
+	    final String[] nomsEspeces = new String[i - 1];
+	    
+	    for(int j = 0; j < i - 1; j++) {
+	    	nomsEspeces[j] = especesbdd.getespeceswithid(j + 1).getLibelle();
+	    }
+
+
+        // Spinner click listener
+	    espece = (TextView) findViewById(R.id.espece);
+	    ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, android.R.layout.simple_dropdown_item_1line, nomsEspeces);
+	    choix.setAdapter(adapter);
+	    OnItemSelectedListener countrySelectedListener = new OnItemSelectedListener() {
+	    	 
+            @Override
+            public void onItemSelected(AdapterView<?> spinner, View container,
+                    int position, long id) {
+        		int idespece;
+        	    especesbdd.open();
+        		idespece = especesbdd.getespeceswithlibelle(nomsEspeces[position]).getId();
+        		especesbdd.close();
+            }
+ 
+            @Override
+            public void onNothingSelected(AdapterView<?> arg0) {
+                // TODO Auto-generated method stub
+            }
+        };
+        
+        // Shutting close the database
+	    especesbdd.close();
+
+ 
+        // Setting ItemClick Handler for Spinner Widget
+        choix.setOnItemSelectedListener(countrySelectedListener);
+        
+        
+        
+        
+	    //Cr�ation d'une instance de ma classe parcellesbdd
+        final parcellesbdd parcellesbdd = new parcellesbdd(this);
+
+		
+		  final Button loginButton = (Button) findViewById(R.id.suivant);
+	        loginButton.setOnClickListener(new OnClickListener() {
+
+				@Override
+				public void onClick(View v) {
+					// numéro
+					EditText numero = (EditText) findViewById(R.id.numero);
+					String numerostr = numero.getText().toString();
+					
+					// surface
+					EditText surface = (EditText) findViewById(R.id.surface);
+					String surfacestr = surface.getText().toString();
+					
+					// rendementprevu
+					EditText rendementprevu = (EditText) findViewById(R.id.rendementprevu);
+					String rendementprevustr = rendementprevu.getText().toString();
+					
+					// rendementrealise
+					EditText rendementrealise = (EditText) findViewById(R.id.rendementrealise);
+					String rendementrealisestr = rendementrealise.getText().toString();
+					
+					parcellesbdd.open();
+					
+					parcelle maparcelle = new parcelle(Integer.parseInt(numerostr), 1, rendementprevustr, rendementrealisestr, surfacestr);
+					parcellesbdd.insertParcelle(maparcelle);
+					surface.setText("");
+					rendementprevu.setText("");
+					rendementrealise.setText("");
+					Toast.makeText(getApplicationContext(), "Parcelle enregistrée pour l'exploitation " + numerostr + " , vous pouvez à présent enrigstrer une nouvelle parcelle.", Toast.LENGTH_LONG).show();
+					parcellesbdd.close();
+
+				}
+	        });
+
+	}
+
+	@Override
+	public boolean onCreateOptionsMenu(Menu menu) {
+		// Inflate the menu; this adds items to the action bar if it is present.
+		getMenuInflater().inflate(R.menu.activity_saisir_exploitation, menu);
+		return true;
+	}
+
+}

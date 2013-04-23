@@ -1,0 +1,107 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".Saisir_exploitation" >
+
+    <Button
+        android:id="@+id/suivant"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="87dp"
+        android:text="@string/suivant" />
+
+    <EditText
+        android:id="@+id/rendementrealise"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/suivant"
+        android:layout_alignLeft="@+id/textView4"
+        android:layout_marginBottom="29dp"
+        android:ems="10"
+        android:inputType="text" />
+
+    <TextView
+        android:id="@+id/textView4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/rendementrealise"
+        android:layout_alignLeft="@+id/rendementprevu"
+        android:layout_marginBottom="28dp"
+        android:text="@string/rendement_realise"
+        android:textAppearance="?android:attr/textAppearanceLarge" />
+
+    <EditText
+        android:id="@+id/rendementprevu"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/textView4"
+        android:layout_alignLeft="@+id/surface"
+        android:layout_marginBottom="17dp"
+        android:ems="10"
+        android:inputType="text" />
+
+    <TextView
+        android:id="@+id/textView2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/rendementprevu"
+        android:layout_alignLeft="@+id/rendementprevu"
+        android:layout_marginBottom="22dp"
+        android:text="@string/rendement_prevu"
+        android:textAppearance="?android:attr/textAppearanceLarge" />
+
+    <EditText
+        android:id="@+id/surface"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/textView2"
+        android:layout_alignLeft="@+id/textView3"
+        android:layout_marginBottom="24dp"
+        android:ems="10"
+        android:inputType="numberDecimal" />
+
+    <TextView
+        android:id="@+id/textView3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/surface"
+        android:layout_alignLeft="@+id/numero"
+        android:layout_marginBottom="22dp"
+        android:text="@string/surface"
+        android:textAppearance="?android:attr/textAppearanceLarge" />
+
+    <TextView
+        android:id="@+id/textView1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/numero"
+        android:layout_alignParentTop="true"
+        android:layout_marginTop="125dp"
+        android:text="@string/numero"
+        android:textAppearance="?android:attr/textAppearanceLarge" />
+
+    <TextView
+        android:id="@+id/espece"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/numero"
+        android:layout_below="@+id/numero"
+        android:layout_marginTop="33dp"
+        android:text="@string/espece"
+        android:textAppearance="?android:attr/textAppearanceLarge" />
+
+    <EditText
+        android:id="@+id/numero"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_below="@+id/textView1"
+        android:layout_marginRight="173dp"
+        android:layout_marginTop="18dp"
+        android:ems="10"
+        android:inputType="number" />
+
+</RelativeLayout>
